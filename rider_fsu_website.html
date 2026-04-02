@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIDER Research Group — FAMU-FSU College of Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --garnet:#782F40;
+  --garnet-dark:#5a1e2d;
+  --garnet-deep:#3d0f1a;
+  --gold:#CEB888;
+  --gold-bright:#e8d49a;
+  --gold-dark:#a8944a;
+  --cream:#fdf8f0;
+  --warm-white:#f9f4ec;
+  --charcoal:#1a1008;
+  --mid:#3a2010;
+  --soft-gold:rgba(206,184,136,0.15);
+  --soft-garnet:rgba(120,47,64,0.15);
+  --border-gold:rgba(206,184,136,0.25);
+  --border-garnet:rgba(120,47,64,0.3);
+}
+html{scroll-behavior:smooth}
+body{background:var(--charcoal);color:var(--cream);font-family:'Outfit',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--charcoal)}
+::-webkit-scrollbar-thumb{background:var(--garnet);border-radius:3px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 4rem;height:64px;
+  background:rgba(26,16,8,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-gold);
+}
+.nav-brand{display:flex;align-items:center;gap:1rem}
+.nav-logo-badge{
+  width:38px;height:38px;border-radius:8px;
+  background:linear-gradient(135deg,var(--garnet),var(--garnet-dark));
+  border:1px solid var(--border-gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;color:var(--gold);
+}
+.nav-name{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:rgba(253,248,240,0.55);text-decoration:none;font-size:0.85rem;font-weight:500;letter-spacing:0.04em;transition:color .25s}
+.nav-links a:hover{color:var(--gold)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding:8rem 4rem 4rem;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%,rgba(120,47,64,0.35) 0%,transparent 65%),
+    radial-gradient(ellipse 60% 80% at 85% 20%,rgba(206,184,136,0.08) 0%,transparent 55%),
+    linear-gradient(170deg,#1a1008 0%,#2a140c 50%,#1a1008 100%);
+}
+.hero-texture{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23CEB888' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.hero-left{}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:0.75rem;
+  background:rgba(120,47,64,0.2);border:1px solid rgba(120,47,64,0.4);
+  padding:0.4rem 1rem;border-radius:100px;
+  font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;
+  margin-bottom:1.75rem;
+}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(3.2rem,6vw,5rem);font-weight:700;line-height:1.05;
+  margin-bottom:1.25rem;
+  background:linear-gradient(135deg,var(--cream) 30%,var(--gold-bright) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{font-size:1.05rem;color:rgba(253,248,240,0.65);max-width:480px;margin-bottom:2.5rem;font-weight:400;line-height:1.8}
+.hero-badges{display:flex;flex-wrap:wrap;gap:0.75rem;margin-bottom:2.5rem}
+.badge{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:var(--soft-gold);border:1px solid var(--border-gold);
+  padding:0.45rem 1rem;border-radius:8px;
+  font-size:0.78rem;color:var(--gold-bright);font-weight:500;
+}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.stat-box{
+  background:rgba(120,47,64,0.12);border:1px solid var(--border-garnet);
+  border-radius:12px;padding:1.25rem;text-align:center;
+}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1}
+.stat-lbl{font-size:0.72rem;color:rgba(253,248,240,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.3rem}
+
+/* Hero SVG animation */
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
+.hero-svg-wrap{width:100%;max-width:480px;position:relative}
+
+/* ── SECTION BASE ── */
+section{padding:6rem 4rem}
+.container{max-width:1200px;margin:0 auto}
+.sec-eye{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.75rem}
+.sec-eye::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:700;color:var(--cream);margin-bottom:0.75rem}
+.sec-rule{width:70px;height:2px;background:linear-gradient(90deg,var(--garnet),transparent);margin-bottom:3rem}
+
+/* ── ABOUT ── */
+#about{background:linear-gradient(180deg,var(--charcoal) 0%,#200e06 100%)}
+.about-grid{display:grid;grid-template-columns:300px 1fr;gap:4rem;align-items:start}
+.pi-card{
+  background:linear-gradient(145deg,rgba(120,47,64,0.2),rgba(26,16,8,0.8));
+  border:1px solid var(--border-garnet);border-radius:20px;
+  padding:2.5rem;position:relative;overflow:hidden;
+}
+.pi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--garnet),var(--gold))}
+.pi-avatar-wrap{position:relative;margin-bottom:1.5rem;display:flex;justify-content:center}
+.pi-avatar{
+  width:110px;height:110px;border-radius:50%;
+  background:linear-gradient(135deg,var(--garnet) 0%,var(--garnet-dark) 100%);
+  border:3px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--gold);
+  position:relative;z-index:1;
+}
+.pi-avatar-ring{
+  position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+  width:126px;height:126px;border-radius:50%;
+  border:1px dashed rgba(206,184,136,0.3);
+  animation:spin 20s linear infinite;
+}
+@keyframes spin{to{transform:translateX(-50%) rotate(360deg)}}
+.pi-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--cream);text-align:center;margin-bottom:0.25rem}
+.pi-title{font-size:0.8rem;color:var(--gold);text-align:center;letter-spacing:0.04em;margin-bottom:0.25rem}
+.pi-inst{font-size:0.75rem;color:rgba(253,248,240,0.5);text-align:center;margin-bottom:1.5rem;line-height:1.5}
+.pi-links{display:flex;flex-direction:column;gap:0.5rem}
+.pi-link{
+  display:flex;align-items:center;gap:0.6rem;
+  background:var(--soft-garnet);border:1px solid var(--border-garnet);
+  color:var(--gold-bright);text-decoration:none;
+  font-size:0.78rem;padding:0.5rem 0.9rem;border-radius:8px;
+  transition:all .2s;font-weight:500;
+}
+.pi-link:hover{background:rgba(120,47,64,0.35);color:var(--cream)}
+.about-bio{font-size:0.98rem;color:rgba(253,248,240,0.75);line-height:1.9}
+.about-bio p+p{margin-top:1.25rem}
+.ri-box{
+  margin-top:2rem;background:rgba(206,184,136,0.06);
+  border:1px solid var(--border-gold);border-radius:12px;padding:1.75rem;
+}
+.ri-head{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1rem}
+.tags{display:flex;flex-wrap:wrap;gap:0.5rem}
+.tag{
+  background:rgba(206,184,136,0.08);border:1px solid rgba(206,184,136,0.2);
+  color:var(--gold-bright);font-size:0.76rem;padding:0.3rem 0.75rem;border-radius:6px;
+}
+
+/* ── RESEARCH AREAS ── */
+#research{background:#200e06}
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.area-card{
+  background:rgba(206,184,136,0.04);border:1px solid var(--border-gold);
+  border-radius:16px;padding:2rem;position:relative;overflow:hidden;
+  transition:transform .25s,border-color .25s;
+}
+.area-card:hover{transform:translateY(-5px);border-color:rgba(206,184,136,0.45)}
+.area-icon{margin-bottom:1.25rem}
+.area-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--cream);margin-bottom:0.5rem}
+.area-desc{font-size:0.85rem;color:rgba(253,248,240,0.6);line-height:1.7}
+
+/* ── TEAM ── */
+#team{background:linear-gradient(180deg,#200e06 0%,var(--charcoal) 100%)}
+
+/* PI row at top */
+.team-pi-row{margin-bottom:3rem}
+.team-section-label{
+  font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--gold);
+  letter-spacing:0.18em;text-transform:uppercase;margin-bottom:1.25rem;
+  padding-left:1rem;border-left:2px solid var(--garnet);
+}
+
+/* Postdoc card */
+.postdoc-wrap{margin-bottom:3rem}
+.postdoc-card{
+  background:linear-gradient(120deg,rgba(120,47,64,0.15),rgba(26,16,8,0.6));
+  border:1px solid var(--border-garnet);border-radius:20px;padding:2.5rem;
+  display:grid;grid-template-columns:auto 1fr;gap:2.5rem;align-items:start;
+  position:relative;overflow:hidden;max-width:850px;
+}
+.postdoc-badge{
+  position:absolute;top:1.25rem;right:1.25rem;
+  font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold);letter-spacing:0.12em;
+  background:rgba(206,184,136,0.1);border:1px solid rgba(206,184,136,0.2);
+  padding:0.2rem 0.6rem;border-radius:4px;text-transform:uppercase;
+}
+/* PhD students */
+.phd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:2rem}
+.member-card{
+  border-radius:20px;padding:0;
+  position:relative;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+  border:1px solid rgba(206,184,136,0.15);
+}
+.member-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,0.5)}
+
+/* Card header with SVG illustration */
+.card-header{
+  height:170px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:1.25rem;
+}
+.card-header-bg{position:absolute;inset:0}
+.card-avatar{
+  position:relative;z-index:2;
+  width:68px;height:68px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;
+  border:2.5px solid;flex-shrink:0;
+}
+.card-body{background:rgba(26,16,8,0.92);padding:1.5rem;border-top:none}
+.member-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--cream);margin-bottom:0.15rem}
+.member-role{font-size:0.75rem;color:var(--gold);letter-spacing:0.04em;margin-bottom:0.75rem}
+.member-focus{font-size:0.85rem;color:rgba(253,248,240,0.65);line-height:1.65}
+.member-tags{margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.4rem}
+.mtag{font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:5px}
+.card-link{margin-top:1rem;display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;text-decoration:none;color:var(--gold-bright);opacity:.8;transition:opacity .2s}
+.card-link:hover{opacity:1}
+
+/* Avatar for postdoc/team */
+.team-avatar{
+  width:80px;height:80px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;
+  flex-shrink:0;
+}
+
+/* ── PUBLICATIONS ── */
+#publications{background:var(--charcoal)}
+.pub-grid{display:flex;flex-direction:column;gap:1rem}
+.pub-card{
+  background:rgba(206,184,136,0.04);border:1px solid var(--border-gold);
+  border-radius:12px;padding:1.6rem;
+  display:grid;grid-template-columns:56px 1fr;gap:1.5rem;align-items:start;
+  transition:border-color .2s;
+}
+.pub-card:hover{border-color:rgba(206,184,136,0.4)}
+.pub-year{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--garnet);letter-spacing:.03em;padding-top:.1rem}
+.pub-title{font-size:0.95rem;font-weight:600;color:var(--cream);margin-bottom:.3rem;line-height:1.4}
+.pub-authors{font-size:0.8rem;color:rgba(253,248,240,0.5);margin-bottom:.2rem}
+.pub-venue{font-size:0.8rem;color:rgba(206,184,136,0.65);font-style:italic}
+.pub-cite{display:inline-flex;align-items:center;gap:.3rem;margin-top:.5rem;font-size:0.72rem;background:rgba(120,47,64,0.2);border:1px solid rgba(120,47,64,0.3);color:#e09090;padding:.2rem .6rem;border-radius:4px}
+
+/* ── CONTACT ── */
+#contact{background:#200e06;border-top:1px solid var(--border-gold)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-card{background:rgba(120,47,64,0.1);border:1px solid var(--border-garnet);border-radius:16px;padding:2rem}
+.contact-item{display:flex;gap:1rem;margin-bottom:1.5rem;align-items:flex-start}
+.contact-icon{
+  width:40px;height:40px;border-radius:10px;flex-shrink:0;
+  background:rgba(120,47,64,0.2);border:1px solid var(--border-garnet);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+}
+.contact-label{font-size:0.72rem;color:var(--gold);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.2rem}
+.contact-val{font-size:.9rem;color:rgba(253,248,240,.8)}
+.contact-val a{color:var(--gold-bright);text-decoration:none}
+.contact-val a:hover{text-decoration:underline}
+.join-box{background:rgba(206,184,136,0.06);border:1px solid var(--border-gold);border-radius:16px;padding:2rem}
+.join-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--cream);margin-bottom:.75rem}
+.join-text{font-size:.9rem;color:rgba(253,248,240,.65);line-height:1.8;margin-bottom:1.25rem}
+.join-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:linear-gradient(135deg,var(--garnet),var(--garnet-dark));
+  border:1px solid var(--border-gold);color:var(--gold-bright);
+  text-decoration:none;font-size:.85rem;font-weight:600;
+  padding:.75rem 1.75rem;border-radius:10px;
+  transition:all .25s;letter-spacing:.03em;
+}
+.join-btn:hover{background:linear-gradient(135deg,#8f3a4d,#6a2538);transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--garnet-deep);padding:2rem 4rem;
+  border-top:1px solid rgba(206,184,136,0.2);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);font-weight:600}
+.foot-copy{font-size:.75rem;color:rgba(253,248,240,.4)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.anim{animation:fadeUp .7s ease both}
+.d1{animation-delay:.1s}.d2{animation-delay:.25s}.d3{animation-delay:.4s}.d4{animation-delay:.55s}.d5{animation-delay:.7s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  section{padding:4rem 1.5rem}
+  .hero{padding:6rem 1.5rem 4rem}
+  .hero-content{grid-template-columns:1fr;gap:3rem}
+  .hero-visual{display:none}
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .areas-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:2rem}
+  .postdoc-card{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:.75rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo-badge">R</div>
+    <div>
+      <div class="nav-name">RIDER Lab · FAMU-FSU</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow anim d1">
+        <span class="pulse-dot"></span>
+        Resilient Infrastructure &amp; Disaster Response
+      </div>
+      <h1 class="anim d2">Building<br>Resilient<br><em style="font-style:italic;color:var(--gold-bright)">Futures</em></h1>
+      <p class="hero-sub anim d3">Advancing interdisciplinary research in disaster resilience, infrastructure risk, and community recovery — bridging engineering, data science, and policy at FSU.</p>
+      <div class="hero-badges anim d4">
+        <span class="badge">🏛 FAMU-FSU College of Engineering</span>
+        <span class="badge">🔬 RIDER Center</span>
+        <span class="badge">📍 Tallahassee, FL</span>
+      </div>
+      <div class="hero-stats anim d5">
+        <div class="stat-box"><div class="stat-num">1K+</div><div class="stat-lbl">Citations</div></div>
+        <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">Researchers</div></div>
+        <div class="stat-box"><div class="stat-num">20+</div><div class="stat-lbl">Publications</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Animated infrastructure SVG -->
+      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:440px;filter:drop-shadow(0 0 40px rgba(120,47,64,0.4))">
+        <defs>
+          <radialGradient id="hg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#782F40" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#1a1008" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="bridgeG" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#CEB888"/>
+            <stop offset="100%" stop-color="#8a6a38"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Background glow -->
+        <circle cx="240" cy="240" r="220" fill="url(#hg)"/>
+        <!-- Grid lines -->
+        <g stroke="rgba(206,184,136,0.07)" stroke-width="1">
+          <line x1="0" y1="120" x2="480" y2="120"/><line x1="0" y1="240" x2="480" y2="240"/>
+          <line x1="0" y1="360" x2="480" y2="360"/>
+          <line x1="120" y1="0" x2="120" y2="480"/><line x1="240" y1="0" x2="240" y2="480"/>
+          <line x1="360" y1="0" x2="360" y2="480"/>
+        </g>
+        <!-- Bridge structure -->
+        <g filter="url(#glow)">
+          <!-- Bridge deck -->
+          <rect x="40" y="280" width="400" height="8" fill="url(#bridgeG)" rx="2"/>
+          <!-- Pylons -->
+          <rect x="155" y="160" width="12" height="128" fill="url(#bridgeG)" rx="2"/>
+          <rect x="313" y="160" width="12" height="128" fill="url(#bridgeG)" rx="2"/>
+          <!-- Cables left pylon -->
+          <line x1="161" y1="165" x2="60" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="161" y1="165" x2="100" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="161" y1="165" x2="140" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="161" y1="165" x2="200" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="161" y1="165" x2="235" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <!-- Cables right pylon -->
+          <line x1="319" y1="165" x2="420" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="319" y1="165" x2="380" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="319" y1="165" x2="340" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="319" y1="165" x2="280" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <line x1="319" y1="165" x2="245" y2="284" stroke="#CEB888" stroke-width="1.5" opacity=".6"/>
+          <!-- Pylon tops -->
+          <polygon points="155,150 167,150 161,135" fill="var(--gold)"/>
+          <polygon points="313,150 325,150 319,135" fill="var(--gold)"/>
+        </g>
+        <!-- Water below bridge -->
+        <g opacity=".5">
+          <path d="M40 310 Q100 300 160 315 Q220 328 280 312 Q340 298 400 314 Q430 320 440 315 L440 360 L40 360Z" fill="rgba(40,80,140,0.3)"/>
+          <animateTransform attributeName="transform" type="translate" values="0,0;5,0;0,0" dur="4s" repeatCount="indefinite"/>
+        </g>
+        <!-- Buildings skyline -->
+        <g fill="rgba(206,184,136,0.12)" stroke="rgba(206,184,136,0.2)" stroke-width="1">
+          <rect x="48" y="200" width="30" height="80"/>
+          <rect x="55" y="185" width="16" height="95"/>
+          <rect x="390" y="210" width="35" height="70"/>
+          <rect x="400" y="195" width="18" height="85"/>
+          <rect x="420" y="220" width="22" height="60"/>
+        </g>
+        <!-- Network nodes (animated) -->
+        <g filter="url(#glow)">
+          <circle cx="240" cy="140" r="6" fill="var(--garnet)" opacity=".9">
+            <animate attributeName="r" values="6;9;6" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.9;0.5;0.9" dur="3s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="100" cy="200" r="5" fill="var(--gold)" opacity=".7">
+            <animate attributeName="r" values="5;8;5" dur="4s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="380" cy="200" r="5" fill="var(--gold)" opacity=".7">
+            <animate attributeName="r" values="5;8;5" dur="3.5s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Connecting lines -->
+          <line x1="240" y1="140" x2="100" y2="200" stroke="rgba(120,47,64,0.5)" stroke-width="1" stroke-dasharray="4,4">
+            <animate attributeName="stroke-dashoffset" values="0;-8" dur="1s" repeatCount="indefinite"/>
+          </line>
+          <line x1="240" y1="140" x2="380" y2="200" stroke="rgba(120,47,64,0.5)" stroke-width="1" stroke-dasharray="4,4">
+            <animate attributeName="stroke-dashoffset" values="0;-8" dur="1s" repeatCount="indefinite"/>
+          </line>
+        </g>
+        <!-- FSU label -->
+        <text x="240" y="430" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="13" fill="rgba(206,184,136,0.4)" letter-spacing="4">FAMU · FSU · RIDER</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="about">
+  <div class="container">
+    <div class="sec-eye">Principal Investigator</div>
+    <h2 class="sec-title">Dr. Neetesh Sharma</h2>
+    <div class="sec-rule"></div>
+    <div class="about-grid">
+      <div>
+        <div class="pi-card">
+          <div class="pi-avatar-wrap">
+            <div class="pi-avatar-ring"></div>
+            <div class="pi-avatar">NS</div>
+          </div>
+          <div class="pi-name">Dr. Neetesh Sharma</div>
+          <div class="pi-title">Assistant Professor</div>
+          <div class="pi-inst">Dept. of Civil &amp; Environmental Engineering<br>FAMU-FSU College of Engineering</div>
+          <div class="pi-links">
+            <a class="pi-link" href="https://www.neeteshsharma.com/" target="_blank">🌐 Personal Website</a>
+            <a class="pi-link" href="https://scholar.google.com/citations?user=o-a0IBwAAAAJ" target="_blank">📚 Google Scholar</a>
+            <a class="pi-link" href="https://rider.eng.famu.fsu.edu/person/neetesh-sharma" target="_blank">🏛 RIDER Profile</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-bio">
+          <p>Dr. Sharma is an Assistant Professor in the Department of Civil and Environmental Engineering at the FAMU-FSU College of Engineering. With a background spanning civil engineering and statistics, he leads interdisciplinary research that incorporates economics, data science, governance, insurance, and emergency response to bring a holistic approach to solving complex challenges in disaster resilience.</p>
+          <p>Before joining FSU, he completed postdoctoral work at the <strong style="color:var(--gold-bright)">Stanford Urban Resilience Initiative</strong>, graduate studies at the <strong style="color:var(--gold-bright)">University of Illinois Urbana-Champaign</strong>, and earned his undergraduate degree from <strong style="color:var(--gold-bright)">NIT Trichy, India</strong>.</p>
+          <p>A native of Punjab, India, Dr. Sharma's lived experiences with natural hazards and financial hardship deeply inspire his research directions and teaching philosophy. His impact metric is human well-being — from colleagues and students to communities worldwide. Outside research, he enjoys DIY projects, poetry, cooking, and chess.</p>
+        </div>
+        <div class="ri-box">
+          <div class="ri-head">Research Interests</div>
+          <div class="tags">
+            <span class="tag">Disaster Recovery</span><span class="tag">Infrastructure Resilience</span>
+            <span class="tag">Risk Mitigation</span><span class="tag">Socioeconomic Resilience</span>
+            <span class="tag">Reliability Engineering</span><span class="tag">Decision-Making Under Uncertainty</span>
+            <span class="tag">Catastrophe Insurance</span><span class="tag">Machine Learning</span>
+            <span class="tag">Statistical Modeling</span><span class="tag">Uncertainty Quantification</span>
+            <span class="tag">Interdependent Infrastructure</span><span class="tag">Optimization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ RESEARCH AREAS ══ -->
+<section id="research">
+  <div class="container">
+    <div class="sec-eye">What We Do</div>
+    <h2 class="sec-title">Research Areas</h2>
+    <div class="sec-rule"></div>
+    <div class="areas-grid">
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="28" width="32" height="4" fill="#CEB888" rx="1"/>
+            <rect x="19" y="14" width="3" height="18" fill="#CEB888" rx="1"/>
+            <rect x="26" y="14" width="3" height="18" fill="#CEB888" rx="1"/>
+            <line x1="20.5" y1="15" x2="8" y2="32" stroke="#782F40" stroke-width="1.5"/>
+            <line x1="27.5" y1="15" x2="40" y2="32" stroke="#782F40" stroke-width="1.5"/>
+            <line x1="20.5" y1="15" x2="27.5" y2="15" stroke="#CEB888" stroke-width="1.5"/>
+            <circle cx="20.5" cy="14" r="2" fill="#CEB888"/>
+            <circle cx="27.5" cy="14" r="2" fill="#CEB888"/>
+          </svg>
+        </div>
+        <div class="area-title">Infrastructure Resilience</div>
+        <div class="area-desc">Modeling and analysis of interconnected infrastructure systems under natural hazards and extreme events, optimizing recovery strategies and system performance.</div>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="24,8 40,36 8,36" fill="none" stroke="#782F40" stroke-width="2"/>
+            <polygon points="24,14 36,34 12,34" fill="rgba(120,47,64,0.2)" stroke="none"/>
+            <circle cx="24" cy="28" r="3" fill="#CEB888"/>
+            <line x1="24" y1="14" x2="24" y2="22" stroke="#CEB888" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="area-title">Disaster Risk Modeling</div>
+        <div class="area-desc">Quantitative probabilistic methods for assessing disaster risk, uncertainty quantification, and multi-hazard risk frameworks for regional infrastructure systems.</div>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="20" width="36" height="6" fill="none" stroke="#CEB888" stroke-width="1.5" rx="1"/>
+            <rect x="6" y="30" width="36" height="6" fill="none" stroke="#CEB888" stroke-width="1.5" rx="1"/>
+            <circle cx="16" cy="23" r="2.5" fill="#782F40"/>
+            <circle cx="32" cy="33" r="2.5" fill="#CEB888"/>
+            <line x1="6" y1="23" x2="42" y2="23" stroke="rgba(206,184,136,0.3)" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="area-title">Transportation Systems</div>
+        <div class="area-desc">Smart transportation, pedestrian safety, evacuation modeling, equitable mobility, and AI-driven analysis of transportation infrastructure and networks.</div>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 30 Q14 20 22 28 Q30 36 38 22 Q41 16 42 14" fill="none" stroke="#4a9eff" stroke-width="2"/>
+            <path d="M6 36 Q14 28 22 34 Q30 40 38 28 Q41 22 42 20 L42 42 L6 42Z" fill="rgba(40,80,180,0.2)"/>
+            <circle cx="14" cy="12" r="5" fill="none" stroke="#CEB888" stroke-width="1.5"/>
+            <line x1="14" y1="6" x2="14" y2="3" stroke="#CEB888" stroke-width="1.5"/>
+            <line x1="14" y1="18" x2="14" y2="21" stroke="#CEB888" stroke-width="1.5"/>
+            <line x1="8" y1="12" x2="5" y2="12" stroke="#CEB888" stroke-width="1.5"/>
+            <line x1="20" y1="12" x2="23" y2="12" stroke="#CEB888" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div class="area-title">Hydrology &amp; Climate Risk</div>
+        <div class="area-desc">Flood hazard modeling, watershed-scale hydrologic assessments, climate variability impacts on water systems, and resilient water infrastructure design.</div>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="8" width="14" height="14" rx="2" fill="none" stroke="#CEB888" stroke-width="1.5"/>
+            <rect x="26" y="8" width="14" height="14" rx="2" fill="none" stroke="#782F40" stroke-width="1.5"/>
+            <rect x="8" y="26" width="14" height="14" rx="2" fill="none" stroke="#782F40" stroke-width="1.5"/>
+            <rect x="26" y="26" width="14" height="14" rx="2" fill="none" stroke="#CEB888" stroke-width="1.5"/>
+            <line x1="22" y1="15" x2="26" y2="15" stroke="#CEB888" stroke-width="1.5" stroke-dasharray="2,2"/>
+            <line x1="15" y1="22" x2="15" y2="26" stroke="#CEB888" stroke-width="1.5" stroke-dasharray="2,2"/>
+            <line x1="22" y1="33" x2="26" y2="33" stroke="#CEB888" stroke-width="1.5" stroke-dasharray="2,2"/>
+            <line x1="33" y1="22" x2="33" y2="26" stroke="#CEB888" stroke-width="1.5" stroke-dasharray="2,2"/>
+          </svg>
+        </div>
+        <div class="area-title">AI, ML &amp; GIS</div>
+        <div class="area-desc">Geospatial intelligence, digital twin development, Web-GIS platforms, machine learning for disaster prediction, and spatial analytics for infrastructure risk mapping.</div>
+      </div>
+
+      <div class="area-card">
+        <div class="area-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <rect x="14" y="14" width="20" height="26" fill="none" stroke="#CEB888" stroke-width="1.5" rx="1"/>
+            <line x1="14" y1="20" x2="34" y2="20" stroke="#CEB888" stroke-width="1"/>
+            <line x1="14" y1="26" x2="34" y2="26" stroke="#CEB888" stroke-width="1"/>
+            <line x1="14" y1="32" x2="34" y2="32" stroke="#CEB888" stroke-width="1"/>
+            <polygon points="12,14 36,14 38,10 10,10" fill="rgba(120,47,64,0.4)" stroke="#782F40" stroke-width="1.5"/>
+            <rect x="20" y="36" width="8" height="4" fill="rgba(206,184,136,0.3)" stroke="#CEB888" stroke-width="1"/>
+          </svg>
+        </div>
+        <div class="area-title">Structural Engineering</div>
+        <div class="area-desc">Structural performance assessment, infrastructure reliability under extreme loads, resilience of reinforced concrete systems, and lifecycle engineering analysis.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ TEAM ══ -->
+<section id="team">
+  <div class="container">
+    <div class="sec-eye">Research Group</div>
+    <h2 class="sec-title">Our Team</h2>
+    <div class="sec-rule"></div>
+
+    <!-- Postdoc -->
+    <div class="postdoc-wrap">
+      <div class="team-section-label">Postdoctoral Researcher</div>
+      <div class="postdoc-card">
+        <div class="postdoc-badge">POSTDOC</div>
+        <div class="team-avatar" style="background:linear-gradient(135deg,rgba(120,47,64,0.3),rgba(26,16,8,0.8));border:2.5px solid var(--gold);color:var(--gold);font-size:1.5rem">VJ</div>
+        <div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:700;color:var(--cream);margin-bottom:.2rem">Vishnupriya Jonnalagadda</div>
+          <div style="font-size:.8rem;color:var(--gold);letter-spacing:.04em;margin-bottom:.85rem">Postdoctoral Research Associate · Infrastructure Risk &amp; Resilience</div>
+          <div style="font-size:.88rem;color:rgba(253,248,240,.65);line-height:1.7;margin-bottom:1rem">A researcher with expertise in risk-informed decision-making and infrastructure resilience. Her work spans probabilistic risk assessment, uncertainty quantification, wildfire and seismic risk analysis, and the development of risk-informed frameworks for infrastructure systems. Previously at Washington State University's Department of Civil &amp; Environmental Engineering.</div>
+          <div class="tags">
+            <span class="tag">Risk Assessment</span><span class="tag">Uncertainty Quantification</span>
+            <span class="tag">Seismic Resilience</span><span class="tag">Wildfire Risk</span><span class="tag">Probabilistic Methods</span>
+          </div>
+          <div style="margin-top:1rem"><a class="pi-link" href="https://www.linkedin.com/in/vishnu-priya-j/" target="_blank" style="display:inline-flex;width:auto;padding:.4rem 1rem">🔗 LinkedIn</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PhD Grid -->
+    <div class="team-section-label">PhD Students</div>
+    <div class="phd-grid">
+
+      <!-- MANSOOR — AI/ML/GIS theme -->
+      <div class="member-card">
+        <div class="card-header" style="background:linear-gradient(160deg,#0d1f0d,#1a2d1a)">
+          <div class="card-header-bg">
+            <svg width="100%" height="100%" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Neural network nodes -->
+              <g opacity=".6">
+                <!-- Layer 1 -->
+                <circle cx="40" cy="50" r="5" fill="#4ade80" opacity=".7"><animate attributeName="opacity" values=".7;1;.7" dur="2s" repeatCount="indefinite"/></circle>
+                <circle cx="40" cy="90" r="5" fill="#4ade80" opacity=".5"><animate attributeName="opacity" values=".5;.9;.5" dur="2.5s" repeatCount="indefinite"/></circle>
+                <circle cx="40" cy="130" r="5" fill="#4ade80" opacity=".6"><animate attributeName="opacity" values=".6;1;.6" dur="1.8s" repeatCount="indefinite"/></circle>
+                <!-- Layer 2 -->
+                <circle cx="120" cy="35" r="5" fill="#22d3ee" opacity=".7"><animate attributeName="opacity" values=".7;1;.7" dur="2.2s" repeatCount="indefinite"/></circle>
+                <circle cx="120" cy="75" r="5" fill="#22d3ee" opacity=".6"><animate attributeName="opacity" values=".6;.9;.6" dur="3s" repeatCount="indefinite"/></circle>
+                <circle cx="120" cy="115" r="5" fill="#22d3ee" opacity=".8"><animate attributeName="opacity" values=".8;1;.8" dur="2.4s" repeatCount="indefinite"/></circle>
+                <circle cx="120" cy="145" r="5" fill="#22d3ee" opacity=".5"/>
+                <!-- Layer 3 -->
+                <circle cx="200" cy="55" r="5" fill="#a78bfa" opacity=".7"/>
+                <circle cx="200" cy="95" r="5" fill="#a78bfa" opacity=".6"/>
+                <circle cx="200" cy="130" r="5" fill="#a78bfa" opacity=".8"/>
+                <!-- Layer 4 -->
+                <circle cx="280" cy="70" r="5" fill="#CEB888" opacity=".9"><animate attributeName="r" values="5;7;5" dur="3s" repeatCount="indefinite"/></circle>
+                <circle cx="280" cy="110" r="5" fill="#CEB888" opacity=".7"/>
+                <!-- Connections -->
+                <line x1="45" y1="50" x2="115" y2="35" stroke="#4ade80" stroke-width=".8" opacity=".3"/>
+                <line x1="45" y1="50" x2="115" y2="75" stroke="#4ade80" stroke-width=".8" opacity=".3"/>
+                <line x1="45" y1="90" x2="115" y2="75" stroke="#4ade80" stroke-width=".8" opacity=".3"/>
+                <line x1="45" y1="90" x2="115" y2="115" stroke="#4ade80" stroke-width=".8" opacity=".3"/>
+                <line x1="45" y1="130" x2="115" y2="115" stroke="#4ade80" stroke-width=".8" opacity=".3"/>
+                <line x1="45" y1="130" x2="115" y2="145" stroke="#4ade80" stroke-width=".8" opacity=".3"/>
+                <line x1="125" y1="35" x2="195" y2="55" stroke="#22d3ee" stroke-width=".8" opacity=".3"/>
+                <line x1="125" y1="75" x2="195" y2="55" stroke="#22d3ee" stroke-width=".8" opacity=".3"/>
+                <line x1="125" y1="75" x2="195" y2="95" stroke="#22d3ee" stroke-width=".8" opacity=".3"/>
+                <line x1="125" y1="115" x2="195" y2="95" stroke="#22d3ee" stroke-width=".8" opacity=".3"/>
+                <line x1="125" y1="115" x2="195" y2="130" stroke="#22d3ee" stroke-width=".8" opacity=".3"/>
+                <line x1="205" y1="55" x2="275" y2="70" stroke="#a78bfa" stroke-width=".8" opacity=".4"/>
+                <line x1="205" y1="95" x2="275" y2="70" stroke="#a78bfa" stroke-width=".8" opacity=".4"/>
+                <line x1="205" y1="95" x2="275" y2="110" stroke="#a78bfa" stroke-width=".8" opacity=".4"/>
+                <line x1="205" y1="130" x2="275" y2="110" stroke="#a78bfa" stroke-width=".8" opacity=".4"/>
+                <!-- Animated data flow -->
+                <circle r="2.5" fill="#CEB888"><animateMotion dur="2s" repeatCount="indefinite" path="M40,50 L120,75 L200,55 L280,70"/></circle>
+                <circle r="2.5" fill="#4ade80" opacity=".8"><animateMotion dur="3s" repeatCount="indefinite" path="M40,130 L120,115 L200,130 L280,110"/></circle>
+              </g>
+              <!-- GIS grid overlay -->
+              <g stroke="rgba(34,211,238,0.12)" stroke-width=".7" fill="none">
+                <line x1="0" y1="0" x2="340" y2="170" opacity=".5"/>
+                <line x1="340" y1="0" x2="0" y2="170" opacity=".5"/>
+              </g>
+            </svg>
+          </div>
+          <div class="card-avatar" style="background:rgba(13,31,13,0.85);color:#4ade80;border-color:rgba(74,222,128,0.5)">MA</div>
+        </div>
+        <div class="card-body">
+          <div class="member-name">Mansoor Adil</div>
+          <div class="member-role">PhD Student · Research Assistant</div>
+          <div class="member-focus">Develops AI/ML-driven geospatial decision-support systems and Web-GIS platforms for disaster preparedness. Integrates Python, JavaScript, and spatial analytics to build real-time disaster monitoring and infrastructure resilience tools.</div>
+          <div class="member-tags">
+            <span class="mtag" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:#86efac">AI / ML</span>
+            <span class="mtag" style="background:rgba(34,211,238,0.1);border:1px solid rgba(34,211,238,0.2);color:#67e8f9">GIS</span>
+            <span class="mtag" style="background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);color:#c4b5fd">Digital Twins</span>
+            <span class="mtag" style="background:rgba(206,184,136,0.1);border:1px solid rgba(206,184,136,0.2);color:#e8d49a">Spatial Analytics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- KEERTI — Transportation theme -->
+      <div class="member-card">
+        <div class="card-header" style="background:linear-gradient(160deg,#0f0f1a,#1a1a2d)">
+          <div class="card-header-bg">
+            <svg width="100%" height="100%" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Road grid -->
+              <g stroke="rgba(251,191,36,0.35)" stroke-width="8" fill="none">
+                <line x1="0" y1="85" x2="340" y2="85"/>
+                <line x1="170" y1="0" x2="170" y2="170"/>
+              </g>
+              <g stroke="rgba(251,191,36,0.15)" stroke-width="3" fill="none">
+                <line x1="0" y1="42" x2="340" y2="42"/>
+                <line x1="0" y1="128" x2="340" y2="128"/>
+                <line x1="85" y1="0" x2="85" y2="170"/>
+                <line x1="255" y1="0" x2="255" y2="170"/>
+              </g>
+              <!-- Dashed center lines -->
+              <g stroke="rgba(253,248,240,0.4)" stroke-width="1.5" stroke-dasharray="12,8">
+                <line x1="0" y1="85" x2="340" y2="85"/>
+                <line x1="170" y1="0" x2="170" y2="170"/>
+              </g>
+              <!-- Vehicles -->
+              <rect x="20" y="78" width="22" height="14" rx="3" fill="#ef4444" opacity=".8">
+                <animate attributeName="x" values="20;310;20" dur="4s" repeatCount="indefinite"/>
+              </rect>
+              <rect x="250" y="78" width="22" height="14" rx="3" fill="#3b82f6" opacity=".8">
+                <animate attributeName="x" values="250;-30;250" dur="5s" repeatCount="indefinite"/>
+              </rect>
+              <rect x="163" y="15" width="14" height="22" rx="3" fill="#22c55e" opacity=".8">
+                <animate attributeName="y" values="15;140;15" dur="4.5s" repeatCount="indefinite"/>
+              </rect>
+              <!-- Pedestrian paths -->
+              <g fill="rgba(251,191,36,0.3)">
+                <rect x="80" y="78" width="8" height="14"/>
+                <rect x="92" y="78" width="8" height="14"/>
+                <rect x="240" y="78" width="8" height="14"/>
+                <rect x="252" y="78" width="8" height="14"/>
+              </g>
+              <!-- Node circles at intersections -->
+              <circle cx="170" cy="85" r="12" fill="none" stroke="#fbbf24" stroke-width="1.5" opacity=".6"/>
+              <circle cx="170" cy="85" r="4" fill="#fbbf24" opacity=".8"/>
+              <circle cx="85" cy="42" r="5" fill="#fbbf24" opacity=".4"/>
+              <circle cx="255" cy="128" r="5" fill="#fbbf24" opacity=".4"/>
+            </svg>
+          </div>
+          <div class="card-avatar" style="background:rgba(15,15,26,0.85);color:#fbbf24;border-color:rgba(251,191,36,0.5)">KR</div>
+        </div>
+        <div class="card-body">
+          <div class="member-name">Keerti Rath</div>
+          <div class="member-role">PhD Student · Research Assistant</div>
+          <div class="member-focus">Background in architecture and urban planning. Researches multimodal transportation networks, pedestrian safety, shared e-mobility, and equitable transit access for underserved populations using GIS and spatial data science.</div>
+          <div class="member-tags">
+            <span class="mtag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);color:#fde68a">Transportation</span>
+            <span class="mtag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);color:#fde68a">Urban Planning</span>
+            <span class="mtag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);color:#fde68a">GIS</span>
+            <span class="mtag" style="background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);color:#fde68a">Equity &amp; Mobility</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AQSA — Hydrology theme -->
+      <div class="member-card">
+        <div class="card-header" style="background:linear-gradient(160deg,#061420,#0d2235)">
+          <div class="card-header-bg">
+            <svg width="100%" height="100%" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Watershed contours -->
+              <g fill="none" stroke="rgba(56,189,248,0.2)" stroke-width="1">
+                <ellipse cx="170" cy="140" rx="155" ry="30"/>
+                <ellipse cx="170" cy="115" rx="130" ry="28"/>
+                <ellipse cx="170" cy="92" rx="105" ry="24"/>
+                <ellipse cx="170" cy="72" rx="80" ry="20"/>
+                <ellipse cx="170" cy="55" rx="55" ry="16"/>
+              </g>
+              <!-- Flow lines -->
+              <g stroke="rgba(56,189,248,0.5)" stroke-width="1.5" fill="none">
+                <path d="M170 30 Q160 60 150 90 Q140 120 130 150"><animate attributeName="stroke-dashoffset" values="0;-200" dur="3s" repeatCount="indefinite"/><animateTransform attributeName="stroke" type="" from="" to=""/></path>
+                <path d="M170 30 Q180 60 190 90 Q200 120 210 150"/>
+                <path d="M170 30 Q145 55 120 80 Q95 105 80 140"/>
+                <path d="M170 30 Q195 55 220 80 Q245 105 260 140"/>
+              </g>
+              <!-- Animated water surface -->
+              <path d="M0 130 Q40 118 80 130 Q120 142 160 130 Q200 118 240 130 Q280 142 340 130 L340 170 L0 170Z" fill="rgba(14,116,192,0.35)">
+                <animateTransform attributeName="transform" type="translate" values="0,0;-20,0;0,0" dur="3s" repeatCount="indefinite"/>
+              </path>
+              <path d="M20 138 Q60 126 100 138 Q140 150 180 138 Q220 126 260 138 Q300 150 340 138 L340 170 L20 170Z" fill="rgba(14,116,192,0.2)">
+                <animateTransform attributeName="transform" type="translate" values="0,0;20,0;0,0" dur="4s" repeatCount="indefinite"/>
+              </path>
+              <!-- Rain drops -->
+              <g fill="#38bdf8" opacity=".6">
+                <ellipse cx="60" cy="50" rx="2" ry="4"><animate attributeName="cy" values="20;150" dur="2s" repeatCount="indefinite" begin="0s"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite" begin="0s"/></ellipse>
+                <ellipse cx="120" cy="50" rx="2" ry="4"><animate attributeName="cy" values="20;150" dur="2s" repeatCount="indefinite" begin="0.4s"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite" begin="0.4s"/></ellipse>
+                <ellipse cx="220" cy="50" rx="2" ry="4"><animate attributeName="cy" values="20;150" dur="2s" repeatCount="indefinite" begin="0.7s"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite" begin="0.7s"/></ellipse>
+                <ellipse cx="290" cy="50" rx="2" ry="4"><animate attributeName="cy" values="20;150" dur="2s" repeatCount="indefinite" begin="0.2s"/><animate attributeName="opacity" values=".8;0" dur="2s" repeatCount="indefinite" begin="0.2s"/></ellipse>
+              </g>
+            </svg>
+          </div>
+          <div class="card-avatar" style="background:rgba(6,20,32,0.85);color:#38bdf8;border-color:rgba(56,189,248,0.5)">AZ</div>
+        </div>
+        <div class="card-body">
+          <div class="member-name">Aqsa Zahid</div>
+          <div class="member-role">PhD Student · Research Assistant</div>
+          <div class="member-focus">Specializes in water resources and hydrologic engineering. Researches flood hazard mapping, climate variability effects on hydrologic processes, and resilient water infrastructure. Previously a Lecturer at NED University and design engineer on WHO/ADB-funded projects.</div>
+          <div class="member-tags">
+            <span class="mtag" style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#7dd3fc">Hydrology</span>
+            <span class="mtag" style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#7dd3fc">Flood Risk</span>
+            <span class="mtag" style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#7dd3fc">Water Resources</span>
+            <span class="mtag" style="background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.25);color:#7dd3fc">Climate Risk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- NASRELDIN — Structural Engineering theme -->
+      <div class="member-card">
+        <div class="card-header" style="background:linear-gradient(160deg,#1a140a,#2a200e)">
+          <div class="card-header-bg">
+            <svg width="100%" height="100%" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Structural frame / truss -->
+              <g stroke="#CEB888" stroke-width="2" fill="none" opacity=".7">
+                <!-- Base -->
+                <line x1="30" y1="150" x2="310" y2="150"/>
+                <!-- Columns -->
+                <line x1="70" y1="150" x2="70" y2="40"/>
+                <line x1="170" y1="150" x2="170" y2="40"/>
+                <line x1="270" y1="150" x2="270" y2="40"/>
+                <!-- Top chord -->
+                <line x1="70" y1="40" x2="270" y2="40"/>
+                <!-- Diagonals -->
+                <line x1="70" y1="40" x2="120" y2="150"/>
+                <line x1="120" y1="150" x2="170" y2="40"/>
+                <line x1="170" y1="40" x2="220" y2="150"/>
+                <line x1="220" y1="150" x2="270" y2="40"/>
+                <!-- Load arrows -->
+                <line x1="120" y1="20" x2="120" y2="40" stroke="#782F40" stroke-width="2"/>
+                <polygon points="116,40 124,40 120,52" fill="#782F40"/>
+                <line x1="220" y1="20" x2="220" y2="40" stroke="#782F40" stroke-width="2"/>
+                <polygon points="216,40 224,40 220,52" fill="#782F40"/>
+              </g>
+              <!-- Stress colors on members -->
+              <g opacity=".5">
+                <line x1="70" y1="40" x2="120" y2="150" stroke="#ef4444" stroke-width="3"/>
+                <line x1="170" y1="40" x2="220" y2="150" stroke="#ef4444" stroke-width="3"/>
+                <line x1="120" y1="150" x2="170" y2="40" stroke="#22c55e" stroke-width="3"/>
+                <line x1="220" y1="150" x2="270" y2="40" stroke="#22c55e" stroke-width="3"/>
+              </g>
+              <!-- Hatch ground -->
+              <g stroke="rgba(206,184,136,0.3)" stroke-width="1">
+                <line x1="20" y1="150" x2="30" y2="160"/><line x1="40" y1="150" x2="50" y2="160"/>
+                <line x1="60" y1="150" x2="70" y2="160"/><line x1="80" y1="150" x2="90" y2="160"/>
+                <line x1="100" y1="150" x2="110" y2="160"/><line x1="120" y1="150" x2="130" y2="160"/>
+                <line x1="140" y1="150" x2="150" y2="160"/><line x1="160" y1="150" x2="170" y2="160"/>
+                <line x1="180" y1="150" x2="190" y2="160"/><line x1="200" y1="150" x2="210" y2="160"/>
+                <line x1="220" y1="150" x2="230" y2="160"/><line x1="240" y1="150" x2="250" y2="160"/>
+                <line x1="260" y1="150" x2="270" y2="160"/><line x1="280" y1="150" x2="290" y2="160"/>
+                <line x1="300" y1="150" x2="310" y2="160"/>
+              </g>
+              <!-- Pin joints -->
+              <g fill="none" stroke="#CEB888" stroke-width="1.5">
+                <circle cx="70" cy="150" r="5"/><circle cx="170" cy="150" r="5"/>
+                <circle cx="270" cy="150" r="5"/>
+                <circle cx="70" cy="40" r="4" fill="rgba(206,184,136,0.3)"/>
+                <circle cx="170" cy="40" r="4" fill="rgba(206,184,136,0.3)"/>
+                <circle cx="270" cy="40" r="4" fill="rgba(206,184,136,0.3)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="card-avatar" style="background:rgba(26,20,10,0.85);color:#CEB888;border-color:rgba(206,184,136,0.5)">NM</div>
+        </div>
+        <div class="card-body">
+          <div class="member-name">Nasreldin Mokhtar, P.E.</div>
+          <div class="member-role">PhD Student · Licensed Professional Engineer</div>
+          <div class="member-focus">A licensed P.E. specializing in structural engineering and infrastructure systems. Brings extensive industry experience to research on structural analysis, performance under extreme loads, and infrastructure resilience against disasters.</div>
+          <div class="member-tags">
+            <span class="mtag" style="background:rgba(206,184,136,0.1);border:1px solid rgba(206,184,136,0.25);color:#e8d49a">Structural Eng.</span>
+            <span class="mtag" style="background:rgba(206,184,136,0.1);border:1px solid rgba(206,184,136,0.25);color:#e8d49a">P.E. License</span>
+            <span class="mtag" style="background:rgba(206,184,136,0.1);border:1px solid rgba(206,184,136,0.25);color:#e8d49a">Infrastructure</span>
+            <span class="mtag" style="background:rgba(206,184,136,0.1);border:1px solid rgba(206,184,136,0.25);color:#e8d49a">Load Analysis</span>
+          </div>
+          <a class="card-link" href="https://www.linkedin.com/in/nasreldin-mokhtar-p-e-a4076869/" target="_blank">🔗 LinkedIn Profile →</a>
+        </div>
+      </div>
+
+      <!-- ERIC — Transportation / Evacuation theme -->
+      <div class="member-card">
+        <div class="card-header" style="background:linear-gradient(160deg,#0f1a0f,#1a2d1a)">
+          <div class="card-header-bg">
+            <svg width="100%" height="100%" viewBox="0 0 340 170" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <!-- Highway evacuation scene -->
+              <!-- Road -->
+              <rect x="0" y="70" width="340" height="30" fill="rgba(40,40,40,0.6)"/>
+              <rect x="0" y="100" width="340" height="30" fill="rgba(30,30,30,0.5)"/>
+              <!-- Lane dividers animated -->
+              <g stroke="rgba(253,248,240,0.5)" stroke-width="1.5" stroke-dasharray="20,15">
+                <line x1="0" y1="85" x2="340" y2="85">
+                  <animate attributeName="stroke-dashoffset" values="0;-35" dur="1s" repeatCount="indefinite"/>
+                </line>
+                <line x1="0" y1="115" x2="340" y2="115">
+                  <animate attributeName="stroke-dashoffset" values="0;-35" dur="1.2s" repeatCount="indefinite"/>
+                </line>
+              </g>
+              <!-- Evacuation vehicles moving right -->
+              <g>
+                <rect x="0" y="73" width="28" height="14" rx="3" fill="#ef4444" opacity=".9">
+                  <animate attributeName="x" values="-30;360" dur="3s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="60" y="73" width="28" height="14" rx="3" fill="#f97316" opacity=".8">
+                  <animate attributeName="x" values="30;370" dur="3.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="120" y="73" width="28" height="14" rx="3" fill="#eab308" opacity=".9">
+                  <animate attributeName="x" values="90;370" dur="2.8s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="200" y="103" width="28" height="14" rx="3" fill="#22c55e" opacity=".8">
+                  <animate attributeName="x" values="170;370" dur="4s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="40" y="103" width="28" height="14" rx="3" fill="#3b82f6" opacity=".9">
+                  <animate attributeName="x" values="10;370" dur="3.2s" repeatCount="indefinite"/>
+                </rect>
+              </g>
+              <!-- GPS markers -->
+              <g opacity=".7">
+                <circle cx="80" cy="50" r="6" fill="none" stroke="#4ade80" stroke-width="1.5"/>
+                <circle cx="80" cy="50" r="2" fill="#4ade80"/>
+                <line x1="80" y1="56" x2="80" y2="70" stroke="#4ade80" stroke-width="1" stroke-dasharray="3,3"/>
+                <circle cx="200" cy="45" r="6" fill="none" stroke="#f87171" stroke-width="1.5"/>
+                <circle cx="200" cy="45" r="2" fill="#f87171"/>
+                <line x1="200" y1="51" x2="200" y2="70" stroke="#f87171" stroke-width="1" stroke-dasharray="3,3"/>
+                <circle cx="300" cy="52" r="6" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+                <circle cx="300" cy="52" r="2" fill="#60a5fa"/>
+                <line x1="300" y1="58" x2="300" y2="70" stroke="#60a5fa" stroke-width="1" stroke-dasharray="3,3"/>
+              </g>
+              <!-- Risk heat zone -->
+              <ellipse cx="80" cy="145" rx="50" ry="15" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.3)" stroke-width="1"/>
+              <text x="80" y="149" text-anchor="middle" fill="rgba(239,68,68,0.7)" font-size="8" font-family="monospace">HIGH RISK</text>
+            </svg>
+          </div>
+          <div class="card-avatar" style="background:rgba(15,26,15,0.85);color:#4ade80;border-color:rgba(74,222,128,0.5)">ET</div>
+        </div>
+        <div class="card-body">
+          <div class="member-name">Eric Twum Barima</div>
+          <div class="member-role">PhD Candidate · Graduate Research Assistant</div>
+          <div class="member-focus">Specializes in transportation safety, AI-driven evacuation modeling, and GIS-based risk analysis. Over five years of experience in road design and geomatics. Researches intelligent transportation systems and data-driven policies for urban mobility and public safety.</div>
+          <div class="member-tags">
+            <span class="mtag" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:#86efac">Transport Safety</span>
+            <span class="mtag" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:#86efac">AI Evacuation</span>
+            <span class="mtag" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:#86efac">GIS</span>
+            <span class="mtag" style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.2);color:#86efac">Road Engineering</span>
+          </div>
+          <a class="card-link" href="https://www.linkedin.com/in/erictbarima/" target="_blank">🔗 LinkedIn Profile →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══ -->
+<section id="publications">
+  <div class="container">
+    <div class="sec-eye">Scholarly Work</div>
+    <h2 class="sec-title">Key Publications</h2>
+    <div class="sec-rule"></div>
+    <div class="pub-grid">
+      <div class="pub-card">
+        <div class="pub-year">2018</div>
+        <div>
+          <div class="pub-title">Resilience analysis: A mathematical formulation to model resilience of engineering systems</div>
+          <div class="pub-authors">N Sharma, A Tabandeh, P Gardoni</div>
+          <div class="pub-venue">Sustainable and Resilient Infrastructure 3(2), 49–67</div>
+          <span class="pub-cite">📖 362 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2020</div>
+        <div>
+          <div class="pub-title">Regional resilience analysis: A multiscale approach to optimize the resilience of interdependent infrastructure</div>
+          <div class="pub-authors">N Sharma, A Tabandeh, P Gardoni</div>
+          <div class="pub-venue">Computer-Aided Civil and Infrastructure Engineering 35(12), 1315–1330</div>
+          <span class="pub-cite">📖 188 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2022</div>
+        <div>
+          <div class="pub-title">Modeling time-varying reliability and resilience of deteriorating infrastructure</div>
+          <div class="pub-authors">L Iannacone, N Sharma, A Tabandeh, P Gardoni</div>
+          <div class="pub-venue">Reliability Engineering &amp; System Safety 217, 108074</div>
+          <span class="pub-cite">📖 159 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2022</div>
+        <div>
+          <div class="pub-title">Mathematical modeling of interdependent infrastructure: An object-oriented approach for generalized network-system analysis</div>
+          <div class="pub-authors">N Sharma, P Gardoni</div>
+          <div class="pub-venue">Reliability Engineering &amp; System Safety 217, 108042</div>
+          <span class="pub-cite">📖 122 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2022</div>
+        <div>
+          <div class="pub-title">Uncertainty propagation in risk and resilience analysis of hierarchical systems</div>
+          <div class="pub-authors">A Tabandeh, N Sharma, P Gardoni</div>
+          <div class="pub-venue">Reliability Engineering &amp; System Safety 219, 108208</div>
+          <span class="pub-cite">📖 107 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2021</div>
+        <div>
+          <div class="pub-title">Classification and mathematical modeling of infrastructure interdependencies</div>
+          <div class="pub-authors">N Sharma, F Nocera, P Gardoni</div>
+          <div class="pub-venue">Sustainable and Resilient Infrastructure 6(1–2), 4–25</div>
+          <span class="pub-cite">📖 75 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Functional connectivity analysis for modeling flow in infrastructure</div>
+          <div class="pub-authors">J Yu, N Sharma, P Gardoni</div>
+          <div class="pub-venue">Reliability Engineering &amp; System Safety 247, 110042</div>
+          <span class="pub-cite">📖 21 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">Quantification and reduction of uncertainty in seismic resilience assessment for a roadway network</div>
+          <div class="pub-authors">V Jonnalagadda, JY Lee, J Zhao, SH Ghasemi</div>
+          <div class="pub-venue">Infrastructures 8(9), 128</div>
+          <span class="pub-cite">📖 8 citations</span>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2026</div>
+        <div>
+          <div class="pub-title">Cluster-Based Active-Learning Scenario Reduction Framework for Probabilistic Wildfire Risk Assessment</div>
+          <div class="pub-authors">V Jonnalagadda, JY Lee, AA Sanad</div>
+          <div class="pub-venue">ASCE-ASME Journal of Risk and Uncertainty in Engineering Systems, Part A</div>
+        </div>
+      </div>
+      <div class="pub-card">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Protocol for the Validation of Models for Regional Risk Analysis</div>
+          <div class="pub-authors">YC Yu, N Sharma, P Gardoni</div>
+          <div class="pub-venue">ASCE-ASME Journal of Risk and Uncertainty in Engineering Systems, Part A</div>
+          <span class="pub-cite">📖 3 citations</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;text-align:center">
+      <a href="https://scholar.google.com/citations?user=o-a0IBwAAAAJ" target="_blank" class="join-btn" style="display:inline-flex">
+        View All on Google Scholar →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-eye">Connect With Us</div>
+    <h2 class="sec-title">Contact &amp; Location</h2>
+    <div class="sec-rule"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card">
+          <div class="contact-item">
+            <div class="contact-icon">🏛</div>
+            <div>
+              <div class="contact-label">Institution</div>
+              <div class="contact-val">FAMU-FSU College of Engineering<br>Florida State University</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🔬</div>
+            <div>
+              <div class="contact-label">Research Center</div>
+              <div class="contact-val">Resilient Infrastructure &amp; Disaster Response (RIDER) Center</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📐</div>
+            <div>
+              <div class="contact-label">Department</div>
+              <div class="contact-val">Civil &amp; Environmental Engineering</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label">Address</div>
+              <div class="contact-val">2525 Pottsdamer St<br>Tallahassee, FL 32310</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div>
+              <div class="contact-label">PI Website</div>
+              <div class="contact-val"><a href="https://www.neeteshsharma.com/" target="_blank">www.neeteshsharma.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <div class="contact-label">RIDER Center</div>
+              <div class="contact-val"><a href="https://rider.eng.famu.fsu.edu/person/neetesh-sharma" target="_blank">rider.eng.famu.fsu.edu</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="join-box">
+          <div class="join-title">Join Our Team</div>
+          <div class="join-text">We welcome motivated PhD applicants and undergraduate researchers interested in disaster resilience, infrastructure risk, and data-driven engineering. If you're passionate about building resilient communities and infrastructure systems, we'd love to hear from you.</div>
+          <a class="join-btn" href="https://www.neeteshsharma.com/" target="_blank">📬 Contact Dr. Sharma →</a>
+        </div>
+
+        <!-- Mini animated campus graphic -->
+        <div style="margin-top:1.5rem;background:rgba(120,47,64,0.08);border:1px solid var(--border-garnet);border-radius:16px;padding:1.5rem;text-align:center">
+          <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px;margin:0 auto;display:block">
+            <!-- FSU campus stylized -->
+            <rect x="60" y="40" width="50" height="60" fill="none" stroke="rgba(206,184,136,0.35)" stroke-width="1.5" rx="2"/>
+            <rect x="65" y="60" width="10" height="15" fill="rgba(120,47,64,0.3)" stroke="rgba(120,47,64,0.5)" stroke-width="1"/>
+            <rect x="80" y="60" width="10" height="15" fill="rgba(120,47,64,0.3)" stroke="rgba(120,47,64,0.5)" stroke-width="1"/>
+            <rect x="70" y="30" width="30" height="12" fill="rgba(206,184,136,0.2)" stroke="rgba(206,184,136,0.4)" stroke-width="1" rx="1"/>
+            <line x1="85" y1="20" x2="85" y2="30" stroke="rgba(206,184,136,0.6)" stroke-width="2"/>
+            <polygon points="82,20 88,20 85,13" fill="var(--garnet)" opacity=".8"/>
+            <!-- Main building -->
+            <rect x="130" y="30" width="60" height="70" fill="none" stroke="rgba(206,184,136,0.4)" stroke-width="1.5" rx="2"/>
+            <rect x="155" y="50" width="10" height="20" fill="rgba(120,47,64,0.5)" stroke="rgba(120,47,64,0.6)" stroke-width="1"/>
+            <rect x="140" y="55" width="10" height="15" fill="rgba(120,47,64,0.3)" stroke="rgba(120,47,64,0.4)" stroke-width="1"/>
+            <rect x="170" y="55" width="10" height="15" fill="rgba(120,47,64,0.3)" stroke="rgba(120,47,64,0.4)" stroke-width="1"/>
+            <rect x="135" y="18" width="50" height="14" fill="rgba(206,184,136,0.3)" stroke="rgba(206,184,136,0.5)" stroke-width="1" rx="1"/>
+            <line x1="160" y1="5" x2="160" y2="18" stroke="var(--gold)" stroke-width="2"/>
+            <polygon points="156,5 164,5 160,-2" fill="var(--gold)"/>
+            <!-- Right building -->
+            <rect x="210" y="45" width="45" height="55" fill="none" stroke="rgba(206,184,136,0.3)" stroke-width="1.5" rx="2"/>
+            <rect x="225" y="60" width="10" height="15" fill="rgba(120,47,64,0.3)" stroke="rgba(120,47,64,0.4)" stroke-width="1"/>
+            <rect x="214" y="33" width="37" height="13" fill="rgba(206,184,136,0.2)" stroke="rgba(206,184,136,0.35)" stroke-width="1" rx="1"/>
+            <!-- Ground -->
+            <line x1="30" y1="100" x2="290" y2="100" stroke="rgba(206,184,136,0.3)" stroke-width="1"/>
+            <!-- Trees -->
+            <g fill="rgba(34,197,94,0.25)" stroke="rgba(34,197,94,0.4)" stroke-width="1">
+              <circle cx="40" cy="80" r="12"/>
+              <circle cx="285" cy="75" r="10"/>
+              <circle cx="115" cy="90" r="8"/>
+            </g>
+            <!-- Label -->
+            <text x="160" y="115" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="9" fill="rgba(206,184,136,0.5)" letter-spacing="2">FAMU-FSU · RIDER CENTER</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div>
+    <div class="foot-brand">RIDER Research Group</div>
+    <div style="font-size:.75rem;color:rgba(253,248,240,.35);margin-top:.2rem">Dr. Neetesh Sharma · FAMU-FSU College of Engineering · Florida State University</div>
+  </div>
+  <div class="foot-copy">© 2025 RIDER Center · Tallahassee, Florida</div>
+</footer>
+
+</body>
+</html>
